@@ -7,8 +7,8 @@
                 <div class="passwordStrength" :class="'str_' + strengthLevel"></div>
                 <div class="inputWrapper">
                     <div @click="passwordShow = !passwordShow" class="showPassword" :class="{hidden: !passwordShow}" :title="!passwordShow ? titleOptions.show : titleOptions.hide"></div>
-                    <input @blur="onBlur" :type="passwordShow === true ? 'text' : 'password'" id="newPassword" placeholder="Jelszó" :character="password" v-model="password">
-                    <div @click="onCopyPass" class="copyPassword" :title="titleOptions.copy"></div>
+                    <input @blur="onBlur" :type="passwordShow === true ? 'text' : 'password'" id="newPassword" placeholder="Jelszó" :character="password" v-model="password" @keyup="showCopyPassword">
+                    <div @click="onCopyPass" v-if="copyPasswordShow" class="copyPassword" :title="titleOptions.copy"></div>
                 </div>
             </div>
             <div v-if="errorShow === true" class="formItem__alert">
@@ -38,6 +38,7 @@ export default {
         return {
             passwordShow: false,
             errorShow: false,
+            copyPasswordShow: false,
             titleOptions: {
                 show: 'Jelszó megjelenítése',
                 hide: 'Jelszó elrejtése',
@@ -134,12 +135,14 @@ export default {
 
             this.password = result.shuffle();
             this.passwordShow = true;
+            this.copyPasswordShow = true;
         },
         // Clear Input Value
         onClear: function () {
             this.password = '';
             this.passwordShow = false;
             this.errorShow = false;
+            this.copyPasswordShow = false;
         },
         // Copy Password
         onCopyPass: function() {
@@ -150,6 +153,13 @@ export default {
                 // 2) Catch errors
             } catch (err) {
                 console.error('Jelszó másolása sikertelen:', err);
+            }
+        },
+        showCopyPassword() {
+            if (this.password.length >= this.passwordLength[0].minLength && this.passwordValidation.errors.length === 0) {
+                this.copyPasswordShow = true;
+            } else {
+                this.copyPasswordShow = false;
             }
         }
     },
