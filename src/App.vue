@@ -7,7 +7,7 @@
                 <div class="passwordStrength" :class="'str_' + strengthLevel"></div>
                 <div class="inputWrapper">
                     <div @click="passwordShow = !passwordShow" class="showPassword" :class="{hidden: !passwordShow}" :title="!passwordShow ? titleOptions.show : titleOptions.hide"></div>
-                    <input @blur="onBlur" :type="passwordShow === true ? 'text' : 'password'" id="newPassword" placeholder="Jelszó" :character="password" v-model="password" @keyup="showPasswordCounter">
+                    <input @blur="onBlur" :type="passwordShow === true ? 'text' : 'password'" id="newPassword" placeholder="Jelszó" :character="password" v-model="password">
                     <div @click="onCopyPass" class="copyPassword" :title="titleOptions.copy"></div>
                 </div>
             </div>
@@ -19,9 +19,7 @@
             </div>
             <div class="formItem__bottom">
                 <div class="passwordCounter">{{password.length}}
-                    <transition name="slide-fade">
-                        <span v-if="counterShow"></span>
-                    </transition>
+                    <span></span>
                 </div>
                 <div class="btnWrapper">
                     <div @click="onClear" class="btn--delPassword" :title="titleOptions.del"></div>
@@ -39,7 +37,6 @@ export default {
     data() {
         return {
             passwordShow: false,
-            counterShow: false,
             errorShow: false,
             titleOptions: {
                 show: 'Jelszó megjelenítése',
@@ -93,7 +90,7 @@ export default {
     methods: {
         // Validate
         onBlur() {
-            this.errorShow = true;
+            setTimeout(() => this.errorShow = true, 500);
         },
         // Generate Password
         onGenerate: function () {
@@ -153,13 +150,6 @@ export default {
                 // 2) Catch errors
             } catch (err) {
                 console.error('Jelszó másolása sikertelen:', err);
-            }
-        },
-        showPasswordCounter() {
-            if (this.password.length > 0) {
-                this.counterShow = true;
-            } else {
-                this.counterShow = false;
             }
         }
     },
@@ -237,14 +227,5 @@ export default {
 </script>
 
 <style>
-    .slide-fade-enter-active {
-        transition: all .3s ease;
-    }
-    .slide-fade-leave-active {
-        transition: all .125s ease-out;
-    }
-    .slide-fade-enter, .slide-fade-leave-to {
-        transform: translateX(10px);
-        opacity: 0;
-    }
+
 </style>

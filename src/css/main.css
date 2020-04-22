@@ -52,7 +52,7 @@ body, body * { line-height: 1.42857; }
 .formItem--password .formItem__bottom .passwordCounter span { display: block; position: absolute; top: calc(50% - 12px); right: -20px; width: 24px; height: 24px; background: url("../assets/more-24px.svg") no-repeat center center/24px; content: ''; }
 .formItem--password .formItem__bottom .btnWrapper { display: -ms-flexbox; display: flex; justify-content: flex-end; align-items: stretch; }
 .formItem--password .formItem__bottom .btnWrapper .btn--delPassword { -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 36px; height: 36px; margin: 0 8px 0 0; padding: 0; background: rgba(0, 0, 0, 0.05); border: 1px solid #dddddd; border-radius: 3px; line-height: 36px; cursor: pointer; content: ''; }
-.formItem--password .formItem__bottom .btnWrapper .btn--delPassword:before { display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background: url("../assets/clear-24px.svg") no-repeat center center/18px; content: ''; opacity: .75; }
+.formItem--password .formItem__bottom .btnWrapper .btn--delPassword:before { display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background: url("../assets/delete-24px.svg") no-repeat center center/18px; content: ''; opacity: .75; }
 .formItem--password .formItem__bottom .btnWrapper .btn--generatePassword { -webkit-appearance: none; -moz-appearance: none; appearance: none; margin: 0; padding: 0 20px; background: #2980b9; border-radius: 3px; color: white; line-height: 36px; cursor: pointer; }
 
 .formItem--submit { display: -ms-flexbox; display: flex; justify-content: center; align-items: stretch; position: absolute; left: 0; right: 0; bottom: -56px; }
